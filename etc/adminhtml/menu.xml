@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Underser_Shops::shops" title="Shops" translate="title" module="Underser_Shops" sortOrder="30" parent="Magento_Backend::content" resource="Underser_Shops::shop"/>
+        <add id="Underser_Shops::shops_list" title="Shops list" translate="title" module="Underser_Shops" sortOrder="10" parent="Underser_Shops::shops" action="shops/shopslist" resource="Underser_Shops::shops_list"/>
+    </menu>
+</config>

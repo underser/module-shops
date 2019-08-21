@@ -1,0 +1,50 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="underser_shops" resource="default" engine="innodb" comment="Shops table">
+        <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="shop_id" padding="6" unsigned="false" nullable="false"
+                comment="Shop ID"/>
+        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false" comment="Is Active"/>
+        <column xsi:type="date" name="creation_time" nullable="false" comment="Creation Time"/>
+        <column xsi:type="date" name="update_time" nullable="true" comment="Update Time"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Shop Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Shop Description"/>
+        <column xsi:type="text" name="address" nullable="true" comment="Shop Address"/>
+        <column xsi:type="text" name="address_description" nullable="true" comment="Shop Address"/>
+        <column xsi:type="text" name="meta_title" nullable="true" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Meta Keywords"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="varchar" name="lon" nullable="true" comment="Shop Longitude"/>
+        <column xsi:type="varchar" name="lat" nullable="true" comment="Shop Latitude"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="UNDERSER_SHOPS_ENTITY_ID" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+        <index referenceId="UNDERSER_SHOPS_NAME_DESCRIPTION_ADDRESS" indexType="fulltext">
+            <column name="name"/>
+            <column name="description"/>
+            <column name="address"/>
+            <column name="address_description"/>
+        </index>
+    </table>
+    <table name="underser_shops_store" resource="default" engine="innodb" comment="CMS Page To Store Linkage Table">
+        <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="UNDERSER_SHOPS_STORE_PAGE_ID" table="underser_shops_store"
+                    column="entity_id" referenceTable="underser_shops" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="UNDERSER_SHOPS_STORE_STORE_ID" table="underser_shops_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="UNDERSER_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

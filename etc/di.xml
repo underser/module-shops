@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Underser\Shops\Api\Data\ShopsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Underser\Shops\Api\Data\ShopsInterface" type="Underser\Shops\Model\Shops"/>
+    <preference for="Underser\Shops\Api\ShopsRepositoryInterface" type="Underser\Shops\Model\ShopsRepository"/>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Underser\Shops\Api\Data\ShopsInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">underser_shops</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="shops_shopslist_listing_data_source" xsi:type="string">Underser\Shops\Model\ResourceModel\Shops\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
