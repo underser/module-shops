@@ -1,0 +1,31 @@
+type Query {
+    shops (
+        entity_id: Int @doc(description: "Entity ID of Shop")
+    ): Shop @resolver(class: "Underser\\Shops\\Model\\Resolver\\Shop") @doc(description: "The shops query returns information about shop") @cache(cacheble: false)
+}
+
+type Query {
+    allShops: AllShops @resolver(class: "Underser\\Shops\\Model\\Resolver\\AllShops") @doc(description: "The shops query returns information about shop") @cache(cacheble: false)
+}
+
+type AllShops @doc(description: "All shops") {
+    items: [Shop] @doc(description: "An array of shops")
+    total_count: Int @doc(description: "The number of shops returned")
+}
+
+type Shop @doc(description: "Shop defines all shop information") {
+    entity_id: String @doc(description: "Shop entity ID")
+    shop_id: String @doc(description: "Shop ID")
+    name: String @doc(description: "Shop name")
+    is_active: String @doc(description: "Shop status")
+    creation_time: String @doc(description: "Shop creation time")
+    update_time: String @doc(description: "Shop update time")
+    description: String @doc(description: "Shop description")
+    address: String @doc(description: "Shop address")
+    address_description: String @doc(description: "Shop address description")
+    meta_title: String @doc(description: "Shop meta title")
+    meta_keywords: String @doc(description: "Shop meta keywords")
+    meta_description: String @doc(description: "Shop meta description")
+    lon: String @doc(description: "Shop longitude")
+    lat: String @doc(description: "Shop latitude")
+}
