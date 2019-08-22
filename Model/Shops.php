@@ -115,7 +115,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      */
     public function getShopId(): int
     {
-        return $this->getData(self::SHOP_ID);
+        return (int)$this->getData(self::SHOP_ID);
     }
 
     /**
@@ -135,7 +135,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      */
     public function getIsActive(): int
     {
-        return $this->getData(self::IS_ACTIVE);
+        return (int)$this->getData(self::IS_ACTIVE);
     }
 
     /**
@@ -143,7 +143,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      *
      * @return string
      */
-    public function getCreationTime(): string
+    public function getCreationTime(): ?string
     {
         return $this->getData(self::CREATION_TIME);
     }
@@ -153,7 +153,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      *
      * @return string
      */
-    public function getUpdateTime(): string
+    public function getUpdateTime(): ?string
     {
         return $this->getData(self::UPDATE_TIME);
     }
@@ -183,7 +183,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      *
      * @return string
      */
-    public function getAddressDescription(): string
+    public function getAddressDescription(): ?string
     {
         return $this->getData(self::ADDRESS_DESCRIPTION);
     }
@@ -225,7 +225,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      */
     public function getLongitude(): float
     {
-        return $this->getData(self::LON);
+        return (float)$this->getData(self::LON);
     }
 
     /**
@@ -235,7 +235,7 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
      */
     public function getLatitude(): float
     {
-        return $this->getData(self::LAT);
+        return (float)$this->getData(self::LAT);
     }
 
     /**

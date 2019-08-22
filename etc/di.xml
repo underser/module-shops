@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Underser\Shops\Api\Data\ShopsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Underser\Shops\Api\Data\ShopsSearchResultsInterface" type="Underser\Shops\Model\SourceSearchResults"/>
     <preference for="Underser\Shops\Api\Data\ShopsInterface" type="Underser\Shops\Model\Shops"/>
     <preference for="Underser\Shops\Api\ShopsRepositoryInterface" type="Underser\Shops\Model\ShopsRepository"/>
     <type name="Magento\Framework\EntityManager\MetadataPool">

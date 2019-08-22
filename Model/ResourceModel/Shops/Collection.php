@@ -93,7 +93,6 @@ class Collection extends AbstractCollection
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
     }
 
-
     /**
      * Define resource model.
      *
@@ -104,6 +103,26 @@ class Collection extends AbstractCollection
         $this->_init(\Underser\Shops\Model\Shops::class, \Underser\Shops\Model\ResourceModel\Shops::class);
         $this->_map['fields']['entity_id'] = 'main_table.entity_id';
         $this->_map['fields']['store'] = 'store_table.store_id';
+    }
+
+    /**
+     * Add field filter to collection
+     *
+     * @param array|string $field
+     * @param string|int|array|null $condition
+     * @return $this
+     */
+    public function addFieldToFilter($field, $condition = null)
+    {
+        if (is_array($field) && in_array('store_id', $field, false)) {
+            return $this->addStoreFilter($condition, false);
+        }
+
+        if ($field === 'store_id') {
+            return $this->addStoreFilter($condition, false);
+        }
+
+        return parent::addFieldToFilter($field, $condition);
     }
 
     /**
@@ -176,30 +195,24 @@ class Collection extends AbstractCollection
             $connection = $this->getConnection();
             $select = $connection->select()->from(['underser_shops_store' => $this->getTable($tableName)])
                 ->where('underser_shops_store.' . $linkField . ' IN (?)', $linkedIds);
-            $result = $connection->fetchAll($select);
+            $result = $connection->fetchPairs($select);
             if ($result) {
-                $storesData = [];
-                foreach ($result as $storeData) {
-                    $storesData[$storeData[$linkField]][] = $storeData['store_id'];
-                }
-
                 foreach ($this as $item) {
-                    $linkedId = $item->getData($linkField);
-                    if (!isset($storesData[$linkedId])) {
+                    $entityId = $item->getData($linkField);
+                    if (!isset($result[$entityId])) {
                         continue;
                     }
-                    $storeIdKey = array_search(Store::DEFAULT_STORE_ID, $storesData[$linkedId], true);
-                    if ($storeIdKey !== false) {
+                    if ($result[$entityId] === 0) {
                         $stores = $this->storeManager->getStores(false, true);
                         $storeId = current($stores)->getId();
                         $storeCode = key($stores);
                     } else {
-                        $storeId = current($storesData[$linkedId]);
+                        $storeId = $result[$item->getData($linkField)];
                         $storeCode = $this->storeManager->getStore($storeId)->getCode();
                     }
                     $item->setData('_first_store_id', $storeId);
                     $item->setData('store_code', $storeCode);
-                    $item->setData('store_id', $storesData[$linkedId]);
+                    $item->setData('store_id', [$result[$entityId]]);
                 }
             }
         }
@@ -242,6 +255,11 @@ class Collection extends AbstractCollection
         parent::_renderFiltersBefore();
     }
 
+    /**
+     * Render filters before.
+     *
+     * @throws \Exception
+     */
     protected function _renderFiltersBefore()
     {
         $entityMetaData = $this->metadataPool->getMetadata(ShopsInterface::class);

@@ -69,14 +69,14 @@ interface ShopsInterface
      *
      * @return string
      */
-    public function getCreationTime(): string;
+    public function getCreationTime(): ?string;
 
     /**
      * Provide shop update time.
      *
      * @return string
      */
-    public function getUpdateTime(): string;
+    public function getUpdateTime(): ?string;
 
     /**
      * Provide shop description.
@@ -97,7 +97,7 @@ interface ShopsInterface
      *
      * @return string
      */
-    public function getAddressDescription(): string;
+    public function getAddressDescription(): ?string;
 
     /**
      * Provide metaTitle.

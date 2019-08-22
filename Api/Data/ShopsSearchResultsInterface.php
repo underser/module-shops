@@ -13,19 +13,26 @@ namespace Underser\Shops\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
 
+/**
+ * Interface ShopsSearchResultsInterface
+ *
+ * Used fully qualified namespaces in annotations for proper work of WebApi request parser.
+ *
+ * @package Underser\Shops\Api\Data
+ */
 interface ShopsSearchResultsInterface extends SearchResultsInterface
 {
     /**
      * Get pages list.
      *
-     * @return ShopsInterface[]
+     * @return \Underser\Shops\Api\Data\ShopsInterface[]
      */
     public function getItems();
 
     /**
      * Set pages list.
      *
-     * @param ShopsInterface[] $items
+     * @param \Underser\Shops\Api\Data\ShopsInterface[] $items
      *
      * @return $this
      */

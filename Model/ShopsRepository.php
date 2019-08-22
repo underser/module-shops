@@ -144,7 +144,7 @@ class ShopsRepository implements ShopsRepositoryInterface
      *
      * @param SearchCriteriaInterface $criteria
      *
-     * @return ShopsSearchResultsInterface
+     * @return Data\ShopsSearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria): Data\ShopsSearchResultsInterface
     {
@@ -153,7 +153,7 @@ class ShopsRepository implements ShopsRepositoryInterface
 
         $this->collectionProcessor->process($criteria, $shopsCollection);
 
-        /** @var ShopsSearchResultsInterface $searchResults */
+        /** @var Data\ShopsSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setItems($shopsCollection->getItems());
@@ -184,7 +184,7 @@ class ShopsRepository implements ShopsRepositoryInterface
     /**
      * Delete shop by entity id.
      *
-     * @param $entityId
+     * @param int $entityId
      *
      * @return bool
      * @throws CouldNotDeleteException

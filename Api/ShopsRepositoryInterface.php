@@ -33,7 +33,7 @@ interface ShopsRepositoryInterface
     /**
      * Provide shop by id.
      *
-     * @param $entityId
+     * @param int $entityId
      *
      * @return ShopsInterface
      * @throws NoSuchEntityException
@@ -62,7 +62,7 @@ interface ShopsRepositoryInterface
     /**
      * Delete shop by entity id.
      *
-     * @param $entityId
+     * @param int $entityId
      *
      * @return bool
      * @throws CouldNotDeleteException

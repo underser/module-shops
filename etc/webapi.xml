@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/shops/:entityId" method="GET">
+        <service class="Underser\Shops\Api\ShopsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Underser_Shops::shops_list"/>
+        </resources>
+    </route>
+    <route url="/V1/shops/search" method="GET">
+        <service class="Underser\Shops\Api\ShopsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Underser_Shops::shops_list"/>
+        </resources>
+    </route>
+    <route url="/V1/shops" method="POST">
+        <service class="Underser\Shops\Api\ShopsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Underser_Shops::save"/>
+        </resources>
+    </route>
+    <route url="/V1/shops/:entity_id" method="PUT">
+        <service class="Underser\Shops\Api\ShopsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Underser_Shops::save"/>
+        </resources>
+    </route>
+    <route url="/V1/shops/:entity_id" method="DELETE">
+        <service class="Underser\Shops\Api\ShopsRepositoryInterface" method="deleteByEntityId"/>
+        <resources>
+            <resource ref="Underser_Shops::shops_list"/>
+        </resources>
+    </route>
+</routes>
