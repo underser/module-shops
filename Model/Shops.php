@@ -12,7 +12,8 @@ declare(strict_types=1);
 namespace Underser\Shops\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
-use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\AbstractExtensibleModel;
+use Underser\Shops\Api\Data\ShopsExtensionInterface;
 use Underser\Shops\Api\Data\ShopsInterface;
 
 /**
@@ -23,7 +24,7 @@ use Underser\Shops\Api\Data\ShopsInterface;
  *
  * @package Underser\Shops\Model
  */
-class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
+class Shops extends AbstractExtensibleModel implements IdentityInterface, ShopsInterface
 {
     /**#@+
      * Shops Statuses
@@ -404,5 +405,27 @@ class Shops extends AbstractModel implements IdentityInterface, ShopsInterface
     public function setLatitude($lat): ShopsInterface
     {
         return $this->setData(self::LAT, $lat);
+    }
+
+    /**
+     * Retrieve existing extension attributes object or create a new one.
+     *
+     * @return ShopsExtensionInterface|null
+     */
+    public function getExtensionAttributes()
+    {
+        return $this->_getExtensionAttributes();
+    }
+
+    /**
+     * Set an extension attributes object.
+     *
+     * @param ShopsExtensionInterface $extensionAttributes
+     *
+     * @return $this
+     */
+    public function setExtensionAttributes(ShopsExtensionInterface $extensionAttributes)
+    {
+        return $this->_setExtensionAttributes($extensionAttributes);
     }
 }

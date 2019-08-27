@@ -11,12 +11,14 @@ declare(strict_types=1);
 
 namespace Underser\Shops\Api\Data;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
+
 /**
  * Interface ShopsInterface
  *
  * @package Underser\Shops\Api\Data
  */
-interface ShopsInterface
+interface ShopsInterface extends ExtensibleDataInterface
 {
     /**#@+
      * Constants for keys of data array. Identical to the name of the getter in snake case
@@ -259,4 +261,22 @@ interface ShopsInterface
      * @return ShopsInterface
      */
     public function setLatitude($lat): ShopsInterface;
+
+    /**
+     * Retrieve existing extension attributes object or create a new one.
+     *
+     * @return \Underser\Shops\Api\Data\ShopsExtensionInterface|null
+     */
+    public function getExtensionAttributes();
+
+    /**
+     * Set an extension attributes object.
+     *
+     * @param \Underser\Shops\Api\Data\ShopsExtensionInterface $extensionAttributes
+     *
+     * @return $this
+     */
+    public function setExtensionAttributes(
+        ShopsExtensionInterface $extensionAttributes
+    );
 }
