@@ -34,9 +34,9 @@ class BackButton extends BaseButton implements ButtonProviderInterface
     /**
      * Provide back url.
      *
-     * @return string
+     * @return string|null
      */
-    protected function getBackUrl(): string
+    protected function getBackUrl(): ?string
     {
         return $this->getUrl('*/*/');
     }

@@ -67,9 +67,9 @@ class BaseButton
      * @param string $route
      * @param array $params
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl($route = '', $params = []): string
+    public function getUrl($route = '', $params = []): ?string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }
