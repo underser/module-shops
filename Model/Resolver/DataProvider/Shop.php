@@ -46,7 +46,7 @@ class Shop
     {
         $shop = $this->shopsRepository->getById($entityId);
 
-        if($shop->getIsActive() === false) {
+        if ($shop->getIsActive() === false) {
             throw new NoSuchEntityException();
         }
 
