@@ -31,9 +31,9 @@ class Delete extends AbstractAction implements HttpPostActionInterface
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             }
-        } else {
-            $this->messageManager->addErrorMessage(__('Sorry we can\'t delete this shop'));
         }
+
+        $this->messageManager->addErrorMessage(__('Sorry we can\'t delete this shop'));
 
         return $this->resultRedirectFactory->create()->setPath('*/*');
     }

@@ -73,7 +73,7 @@ class Shop implements ResolverInterface
      */
     protected function getEntityId(array $args): int
     {
-        if(!isset($args['entity_id'])) {
+        if (!isset($args['entity_id'])) {
             throw new GraphQlInputException(__('Entity id should be specified.'));
         }
 

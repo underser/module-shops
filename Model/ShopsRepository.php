@@ -104,7 +104,7 @@ class ShopsRepository implements ShopsRepositoryInterface
      */
     public function save(Data\ShopsInterface $shop): Data\ShopsInterface
     {
-        if($shop->getStoreId() === null) {
+        if ($shop->getStoreId() === null) {
             $storeId = $this->storeManager->getStore()->getId();
             $shop->setStoreId($storeId);
         }
@@ -132,7 +132,7 @@ class ShopsRepository implements ShopsRepositoryInterface
         $shopsModel = $this->shopsFactory->create();
         $shopsModel->load($entityId);
 
-        if(!$shopsModel->getEntityId()) {
+        if (!$shopsModel->getEntityId()) {
             throw new NoSuchEntityException(__('Could not load shop by id: %1', $entityId));
         }
 

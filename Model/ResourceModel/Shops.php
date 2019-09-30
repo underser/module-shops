@@ -10,9 +10,9 @@
 
 namespace Underser\Shops\Model\ResourceModel;
 
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\ResourceModel\Db\Context;
-use Magento\Framework\Model\AbstractModel;
 
 class Shops extends AbstractDb
 {
@@ -45,7 +45,7 @@ class Shops extends AbstractDb
      */
     protected function _afterLoad(AbstractModel $object)
     {
-        if($object->getEntityId()) {
+        if ($object->getEntityId()) {
             $stores = $this->lookupStoreIds($object->getEntityId());
 
             $object->setData('store_id', $stores);
@@ -67,20 +67,20 @@ class Shops extends AbstractDb
         $newStores = (array)$object->getStores();
         $table = $this->getTable('underser_shops_store');
 
-        if(empty($newStores)) {
+        if (empty($newStores)) {
             $newStores = (array)$object->getStoreId();
         }
 
         $insert = array_diff($newStores, $oldStores);
         $delete = array_diff($oldStores, $newStores);
 
-        if($delete) {
+        if ($delete) {
             $where = ['entity_id = ?' => (int)$object->getEntityId(), 'store_id IN (?)' => $delete];
 
             $this->getConnection()->delete($table, $where);
         }
 
-        if($insert) {
+        if ($insert) {
             $data = [];
 
             foreach ($insert as $storeId) {
