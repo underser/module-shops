@@ -10,7 +10,7 @@
         "magento/module-ui": "101.1.*"
     },
     "require-dev": {
-        "smile/magento2-smilelab-quality-suite": "1.0.0"
+        "smile/magento2-smilelab-quality-suite": "2.1.0"
     },
     "repositories": [
         {
