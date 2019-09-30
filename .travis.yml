@@ -11,7 +11,7 @@ install:
 - composer install --prefer-dist
 
 script:
-- php vendor/bin/phpcs --standard=PSR2 Api/ Block/ Controller/ Model/ Ui/ Test/
+- php vendor/bin/phpcs --runtime-set exitIgnoreWarnings true --standard=PSR2 Api/ Block/ Controller/ Model/ Ui/ Test/
 - php vendor/bin/phpmd Api/,Block/,Controller/,Model/,Ui/,Test/ text cleancode,codesize,controversial,design,naming,unusedcode
 - php vendor/bin/phpcpd Api/ Block/ Controller/ Model/ Ui/ Test/
 - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
